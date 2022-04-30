@@ -62,15 +62,19 @@ function init() {
 function showQuestion() {
     let question = questions[currentQuestion]
     document.getElementById('question').innerHTML = question['question'];
-    document.getElementById('answer1').innerHTML = question['answer_1'];
-    document.getElementById('answer2').innerHTML = question['answer_2'];
-    document.getElementById('answer3').innerHTML = question['answer_3'];
-    document.getElementById('answer4').innerHTML = question['answer_4'];
+    document.getElementById('answer_1').innerHTML = question['answer_1'];
+    document.getElementById('answer_2').innerHTML = question['answer_2'];
+    document.getElementById('answer_3').innerHTML = question['answer_3'];
+    document.getElementById('answer_4').innerHTML = question['answer_4'];
     document.getElementById('currentQuestionPage').innerHTML = currentQuestion+1;
 }
-
 
 function nextQuestion() {
     currentQuestion ++;
     showQuestion();
+}
+
+
+function answer(selection) {
+    
 }

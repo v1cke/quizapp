@@ -14,3 +14,8 @@ body {
     display: flex;
     justify-content: space-between;
 }
+
+.quiz-answer-card:hover {
+    cursor: pointer;
+    background-color: rgb(230, 230, 230);
+}
