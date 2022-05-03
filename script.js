@@ -72,9 +72,9 @@ function showQuestion() {
 
 function nextQuestion() {
     currentQuestion++;
-    showQuestion();
-    templateCleanAnswers();
     document.getElementById('nextBtn').disabled = true;     // Button für nächste Frage deaktiviert
+    templateCleanAnswers();
+    showQuestion();
 }
 
 
