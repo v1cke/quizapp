@@ -69,24 +69,38 @@ function showQuestion() {
     document.getElementById('currentQuestionPage').innerHTML = currentQuestion + 1;
 }
 
+
 function nextQuestion() {
     currentQuestion++;
     showQuestion();
-    document.getElementById('answer_1').parentNode.classList.remove('bg-danger');
+    templateCleanAnswers();
+    document.getElementById('nextBtn').disabled = true;     // Button für nächste Frage deaktiviert
 }
 
 
 function answer(selection) {
     let question = questions[currentQuestion];              // packt die array Nr. in die Variable question         
-    let selectedAnswerNo = selection.slice(-1);
-    let i = question['right_answer']
+    let selectedAnswerNo = selection.slice(-1);             // die letzte Zahl aus "answer_1/2/3/4" wird extrahiert
+    let i = question['right_answer']                        // die zahl der richtigen Antwort wird zu Variable i
     if (selectedAnswerNo == i) {
-        console.log('Richtigggggg')
-        document.getElementById(selection).parentNode.classList.add('bg-success');
+        document.getElementById(selection).parentNode.classList.add('bg-success'); // das übergordnete Element kriegt eine Background Color
     }
     else {
-        console.log('falsch du otto')
         document.getElementById(selection).parentNode.classList.add('bg-danger');
         document.getElementById('answer_' + i).parentNode.classList.add('bg-success');
     }
+    document.getElementById('nextBtn').disabled = false;        // der Button für die näöchste Frage wird aktiviert
+}
+
+
+function templateCleanAnswers() {
+    document.getElementById('answer_1').parentNode.classList.remove('bg-danger');
+    document.getElementById('answer_1').parentNode.classList.remove('bg-success');
+    document.getElementById('answer_2').parentNode.classList.remove('bg-danger');
+    document.getElementById('answer_2').parentNode.classList.remove('bg-success');
+    document.getElementById('answer_3').parentNode.classList.remove('bg-danger');
+    document.getElementById('answer_3').parentNode.classList.remove('bg-success');
+    document.getElementById('answer_4').parentNode.classList.remove('bg-danger');
+    document.getElementById('answer_4').parentNode.classList.remove('bg-success');
+    
 }
