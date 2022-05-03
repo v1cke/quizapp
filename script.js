@@ -66,15 +66,27 @@ function showQuestion() {
     document.getElementById('answer_2').innerHTML = question['answer_2'];
     document.getElementById('answer_3').innerHTML = question['answer_3'];
     document.getElementById('answer_4').innerHTML = question['answer_4'];
-    document.getElementById('currentQuestionPage').innerHTML = currentQuestion+1;
+    document.getElementById('currentQuestionPage').innerHTML = currentQuestion + 1;
 }
 
 function nextQuestion() {
-    currentQuestion ++;
+    currentQuestion++;
     showQuestion();
+    document.getElementById('answer_1').parentNode.classList.remove('bg-danger');
 }
 
 
 function answer(selection) {
-    
+    let question = questions[currentQuestion];              // packt die array Nr. in die Variable question         
+    let selectedAnswerNo = selection.slice(-1);
+    let i = question['right_answer']
+    if (selectedAnswerNo == i) {
+        console.log('Richtigggggg')
+        document.getElementById(selection).parentNode.classList.add('bg-success');
+    }
+    else {
+        console.log('falsch du otto')
+        document.getElementById(selection).parentNode.classList.add('bg-danger');
+        document.getElementById('answer_' + i).parentNode.classList.add('bg-success');
+    }
 }
