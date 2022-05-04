@@ -51,6 +51,7 @@ let questions = [
 
 
 let currentQuestion = 0;
+let rightQuestions = 0;
 
 
 function init() {
@@ -60,13 +61,22 @@ function init() {
 
 
 function showQuestion() {
-    let question = questions[currentQuestion]
-    document.getElementById('question').innerHTML = question['question'];
-    document.getElementById('answer_1').innerHTML = question['answer_1'];
-    document.getElementById('answer_2').innerHTML = question['answer_2'];
-    document.getElementById('answer_3').innerHTML = question['answer_3'];
-    document.getElementById('answer_4').innerHTML = question['answer_4'];
-    document.getElementById('currentQuestionPage').innerHTML = currentQuestion + 1;
+
+    if (currentQuestion >= questions.length) {
+        document.getElementById('quizBody').innerHTML = /*html*/ `
+        <div> Du hast alle Fragen beantwortet. Vielen Dank für die Teilnahme an meinem Quiz</div> 
+        <div class="w-100"><img src="img/win.jpg"></div>
+        <div>Du hast ${rightQuestions} von ${questions.length} Fragen richtig beantwortet</div>     
+        `;
+    } else {
+        let question = questions[currentQuestion]
+        document.getElementById('question').innerHTML = question['question'];
+        document.getElementById('answer_1').innerHTML = question['answer_1'];
+        document.getElementById('answer_2').innerHTML = question['answer_2'];
+        document.getElementById('answer_3').innerHTML = question['answer_3'];
+        document.getElementById('answer_4').innerHTML = question['answer_4'];
+        document.getElementById('currentQuestionPage').innerHTML = currentQuestion + 1;
+    }
 }
 
 
@@ -84,6 +94,7 @@ function answer(selection) {
     let i = question['right_answer']                        // die zahl der richtigen Antwort wird zu Variable i
     if (selectedAnswerNo == i) {
         document.getElementById(selection).parentNode.classList.add('bg-success'); // das übergordnete Element kriegt eine Background Color
+        rightQuestions++;
     }
     else {
         document.getElementById(selection).parentNode.classList.add('bg-danger');
@@ -102,5 +113,5 @@ function templateCleanAnswers() {
     document.getElementById('answer_3').parentNode.classList.remove('bg-success');
     document.getElementById('answer_4').parentNode.classList.remove('bg-danger');
     document.getElementById('answer_4').parentNode.classList.remove('bg-success');
-    
+
 }
