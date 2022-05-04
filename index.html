@@ -30,38 +30,42 @@
 
     <div class="container">
         <div class="card" style="width: 30rem;">
-            <img src="img/pencil.jpg" class="card-img-top" alt="...">
+            <img src="img/quiz.jpg" id="quizImg" class="card-img-top" alt="...">
+            <div class="progress">
+                <div id="progressBar" class="progress-bar" role="progressbar" style="width: 17%;">17%</div>
+            </div>
             <div id="quizBody" class="card-body">
                 <h5 id="question" class="card-title"></h5>
 
                 <div class="card quiz-answer-card mb-2" onclick="answer('answer_1')">
                     <div id="answer_1" class="card-body">
-                        
+
                     </div>
                 </div>
-                
+
                 <div class="card quiz-answer-card mb-2" onclick="answer('answer_2')">
                     <div id="answer_2" class="card-body">
-                        
+
                     </div>
                 </div>
-                
+
                 <div class="card quiz-answer-card mb-2" onclick="answer('answer_3')">
                     <div id="answer_3" class="card-body">
-                        
+
                     </div>
                 </div>
-                
+
                 <div class="card quiz-answer-card mb-2" onclick="answer('answer_4')">
                     <div id="answer_4" class="card-body">
-                        
+
                     </div>
                 </div>
 
                 <div class="question-footer">
                     <span>
                         <b id="currentQuestionPage"></b> von <b id="amountquestions"></b> Fragen</span>
-                    <button id="nextBtn" type="button" class="btn btn-outline-secondary" onclick="nextQuestion()" disabled>Nächste Frage</button>
+                    <button id="nextBtn" type="button" class="btn btn-outline-secondary" onclick="nextQuestion()"
+                        disabled>Nächste Frage</button>
                 </div>
 
             </div>

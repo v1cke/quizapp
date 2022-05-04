@@ -23,3 +23,7 @@ body {
 .bg-success, .bg-danger {
     color: white;
 }
+
+.w-100 img{
+    width: 100%;
+}

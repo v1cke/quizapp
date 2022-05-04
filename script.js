@@ -8,7 +8,7 @@ let questions = [
         "right_answer": 2
     },
     {
-        "question": "Wer Fusbball Bundesliga Meister 2012?",
+        "question": "Wer war Fussball Bundesliga Meister 2012?",
         "answer_1": "FC Bayern",
         "answer_2": "SV Werder Bremen",
         "answer_3": "Borussia Dortmund",
@@ -63,19 +63,9 @@ function init() {
 function showQuestion() {
 
     if (currentQuestion >= questions.length) {
-        document.getElementById('quizBody').innerHTML = /*html*/ `
-        <div> Du hast alle Fragen beantwortet. Vielen Dank für die Teilnahme an meinem Quiz</div> 
-        <div class="w-100"><img src="img/win.jpg"></div>
-        <div>Du hast ${rightQuestions} von ${questions.length} Fragen richtig beantwortet</div>     
-        `;
+        templateQuestionFinished()
     } else {
-        let question = questions[currentQuestion]
-        document.getElementById('question').innerHTML = question['question'];
-        document.getElementById('answer_1').innerHTML = question['answer_1'];
-        document.getElementById('answer_2').innerHTML = question['answer_2'];
-        document.getElementById('answer_3').innerHTML = question['answer_3'];
-        document.getElementById('answer_4').innerHTML = question['answer_4'];
-        document.getElementById('currentQuestionPage').innerHTML = currentQuestion + 1;
+        templateQuestionProgress()
     }
 }
 
@@ -113,5 +103,29 @@ function templateCleanAnswers() {
     document.getElementById('answer_3').parentNode.classList.remove('bg-success');
     document.getElementById('answer_4').parentNode.classList.remove('bg-danger');
     document.getElementById('answer_4').parentNode.classList.remove('bg-success');
+}
 
+
+function templateQuestionProgress() {
+    let percent = currentQuestion / questions.length;
+        percent = Math.round(percent * 100);
+        document.getElementById('progressBar').innerHTML = `${percent} %`;
+        document.getElementById('progressBar').style = `width: ${percent}%`;
+        let question = questions[currentQuestion];
+        document.getElementById('question').innerHTML = question['question'];
+        document.getElementById('answer_1').innerHTML = question['answer_1'];
+        document.getElementById('answer_2').innerHTML = question['answer_2'];
+        document.getElementById('answer_3').innerHTML = question['answer_3'];
+        document.getElementById('answer_4').innerHTML = question['answer_4'];
+        document.getElementById('currentQuestionPage').innerHTML = currentQuestion + 1;
+}
+
+function templateQuestionFinished() {
+    document.getElementById('quizBody').innerHTML = /*html*/ `
+        <div class="text-center"> Du hast alle Fragen beantwortet. Vielen Dank für die Teilnahme</div> 
+        <div class="text-center">Du hast <b>${rightQuestions}</b> von <b>${questions.length}</b> Fragen richtig beantwortet</div>     
+        `;
+        document.getElementById('quizImg').src = 'img/win.jpg';
+        document.getElementById('progressBar').innerHTML = `100%`;
+        document.getElementById('progressBar').style = `width: 100%`;
 }
