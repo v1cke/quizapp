@@ -67,7 +67,8 @@ function showQuestion() {
     if (currentQuestion >= questions.length) {
         templateQuestionFinished()
     } else {
-        templateQuestionProgress()
+        templateProgressbar();
+        templateNextQuestion();
     }
 }
 
@@ -110,19 +111,24 @@ function templateCleanAnswers() {       // setzt die Farbmarkierungen der Antwor
 }
 
 
-function templateQuestionProgress() {
+function templateProgressbar() {
     let percent = currentQuestion / questions.length;       //Prozentsatz ausrechnen
-        percent = Math.round(percent * 100);                // Prozent aufrunden
-        document.getElementById('progressBar').innerHTML = `${percent} %`;  // Progress % Zahl als Text
-        document.getElementById('progressBar').style = `width: ${percent}%`; // Progress bar in % entsprechent auffüllen
-        let question = questions[currentQuestion];
-        document.getElementById('question').innerHTML = question['question'];
-        document.getElementById('answer_1').innerHTML = question['answer_1'];
-        document.getElementById('answer_2').innerHTML = question['answer_2'];
-        document.getElementById('answer_3').innerHTML = question['answer_3'];
-        document.getElementById('answer_4').innerHTML = question['answer_4'];
-        document.getElementById('currentQuestionPage').innerHTML = currentQuestion + 1;  //aktuelle Seite ist immer Array-Nr. +1
+    percent = Math.round(percent * 100);                // Prozent aufrunden
+    document.getElementById('progressBar').innerHTML = `${percent} %`;  // Progress % Zahl als Text
+    document.getElementById('progressBar').style = `width: ${percent}%`; // Progress bar in % entsprechent auffüllen
 }
+
+
+function templateNextQuestion() {
+    let question = questions[currentQuestion];
+    document.getElementById('question').innerHTML = question['question'];
+    document.getElementById('answer_1').innerHTML = question['answer_1'];
+    document.getElementById('answer_2').innerHTML = question['answer_2'];
+    document.getElementById('answer_3').innerHTML = question['answer_3'];
+    document.getElementById('answer_4').innerHTML = question['answer_4'];
+    document.getElementById('currentQuestionPage').innerHTML = currentQuestion + 1;  //aktuelle Seite ist immer Array-Nr. +1
+}
+
 
 function templateQuestionFinished() {
     document.getElementById('quizBody').innerHTML = /*html*/ `
@@ -130,7 +136,7 @@ function templateQuestionFinished() {
         <div class="text-center">Du hast <b>${rightQuestions}</b> von <b>${questions.length}</b> Fragen richtig beantwortet</div>
         <div class="btn-center"><button type="button" class="btn btn-outline-secondary" onclick="window.location.reload()">Spiel erneut spielen</button></div>
         `;
-        document.getElementById('quizImg').src = 'img/win.jpg';
-        document.getElementById('progressBar').innerHTML = `100%`;
-        document.getElementById('progressBar').style = `width: 100%`;
+    document.getElementById('quizImg').src = 'img/win.jpg';
+    document.getElementById('progressBar').innerHTML = `100%`;
+    document.getElementById('progressBar').style = `width: 100%`;
 }
